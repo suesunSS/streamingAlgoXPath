@@ -4,16 +4,16 @@ package model;
  * Created by Shu SHANG on 18/11/16.
  */
 
-public class NFATrans {
-    private NFAState toState;
+public class AutomatonTransition {
+    private AutomatonState toState;
     private String inputSymbol;
 
-    public NFATrans(NFAState toState, String inputSymbol) {
+    public AutomatonTransition(AutomatonState toState, String inputSymbol) {
         this.toState = toState;
         this.inputSymbol = inputSymbol;
     }
 
-    public NFAState getToState() {
+    public AutomatonState getToState() {
         return toState;
     }
 
@@ -21,7 +21,7 @@ public class NFATrans {
         return inputSymbol;
     }
 
-    public void setToState(NFAState toState) {
+    public void setToState(AutomatonState toState) {
         this.toState = toState;
     }
 
@@ -31,6 +31,6 @@ public class NFATrans {
 
     @Override
     public String toString() {
-        return "to: " + toState.getNum() + ", input:" + inputSymbol;
+        return "To: " + toState.getNum() + ", input: " + inputSymbol;
     }
 }

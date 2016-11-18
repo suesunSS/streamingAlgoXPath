@@ -30,8 +30,8 @@ public class NFA {
                     NFAState initialState = tempState;
                     NFAState interState = new NFAState(stateNum++, false);
                     NFAState nextState = new NFAState(stateNum++, false);
-                    NFATrans initToInter = new NFATrans(interState, "epsilon");
-                    NFATrans interToNext = new NFATrans(nextState, stepArray[j]);
+                    AutomatonTransition initToInter = new AutomatonTransition(interState, "epsilon");
+                    AutomatonTransition interToNext = new AutomatonTransition(nextState, stepArray[j]);
                     initialState.addTransition(initToInter);
                     interState.addTransition(interToNext);
                     nfa.add(initialState);
@@ -40,7 +40,7 @@ public class NFA {
                 } else {
                     NFAState interState = tempState;
                     NFAState nextState = new NFAState(stateNum++, false);
-                    NFATrans interToNext = new NFATrans(nextState, stepArray[j]);
+                    AutomatonTransition interToNext = new AutomatonTransition(nextState, stepArray[j]);
                     interState.addTransition(interToNext);
                     nfa.add(interState);
                     tempState = nextState;
