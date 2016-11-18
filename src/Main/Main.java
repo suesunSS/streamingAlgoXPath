@@ -1,5 +1,6 @@
 package Main;
 
+import Algorithm.LazyDFAStreamingAlgorithm;
 import Algorithm.SimplePathStreamingAlgorithm;
 import Exceptions.StreamingAlgorithmException;
 import model.QueryForm;
@@ -7,11 +8,7 @@ import model.QueryForm;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by Shu SHANG on 15/11/16.
@@ -25,10 +22,11 @@ public class Main {
 
         QueryForm formOfQuery;
         SimplePathStreamingAlgorithm spsa = null;
+        LazyDFAStreamingAlgorithm dfaAlgo = null;
         ArrayList<Integer> output = null;
         if (query.substring(2).contains("//")) {
             formOfQuery = QueryForm.COMPLEX_PATH;
-            //TODO
+            dfaAlgo = new LazyDFAStreamingAlgorithm(query);
         } else {
             formOfQuery = QueryForm.SIMPLE_PATH;
             spsa = new SimplePathStreamingAlgorithm(query);

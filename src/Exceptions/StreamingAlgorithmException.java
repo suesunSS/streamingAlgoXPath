@@ -24,7 +24,7 @@ public class StreamingAlgorithmException extends Exception {
     }
 
     private static String format(ExceptionIndex index, Object... args) {
-            return String.format(index.toString(), args);
+        return String.format(index.toString(), args);
     }
 
     public ExceptionIndex getIndex() {
