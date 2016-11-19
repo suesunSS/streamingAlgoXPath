@@ -8,13 +8,13 @@ import java.util.List;
  */
 
 public class NFA {
-    private List<NFAState> nfa;  //a NFA consists of a set of states
+    private List<AutomatonState> nfa;  //a NFA consists of a set of states
 
     public NFA() {
         nfa = new ArrayList<>();
     }
 
-    public List<NFAState> getNfa() {
+    public List<AutomatonState> getNfa() {
         return nfa;
     }
 
@@ -22,14 +22,14 @@ public class NFA {
     public void XPathToNFA(String query) {
         int stateNum = 0;
         String[] subForms = query.substring(2).split("//");
-        NFAState tempState = new NFAState(stateNum++, false);
+        AutomatonState tempState = new AutomatonState(stateNum++, false, false);
         for (String subForm : subForms) {
             String[] stepArray = subForm.split("/");
             for (int j = 0; j < stepArray.length; j++) {
                 if (j == 0) {
-                    NFAState initialState = tempState;
-                    NFAState interState = new NFAState(stateNum++, false);
-                    NFAState nextState = new NFAState(stateNum++, false);
+                    AutomatonState initialState = tempState;
+                    AutomatonState interState = new AutomatonState(stateNum++, false, true);
+                    AutomatonState nextState = new AutomatonState(stateNum++, false, false);
                     AutomatonTransition initToInter = new AutomatonTransition(interState, "epsilon");
                     AutomatonTransition interToNext = new AutomatonTransition(nextState, stepArray[j]);
                     initialState.addTransition(initToInter);
@@ -38,8 +38,8 @@ public class NFA {
                     nfa.add(interState);
                     tempState = nextState;
                 } else {
-                    NFAState interState = tempState;
-                    NFAState nextState = new NFAState(stateNum++, false);
+                    AutomatonState interState = tempState;
+                    AutomatonState nextState = new AutomatonState(stateNum++, false, false);
                     AutomatonTransition interToNext = new AutomatonTransition(nextState, stepArray[j]);
                     interState.addTransition(interToNext);
                     nfa.add(interState);
@@ -47,8 +47,18 @@ public class NFA {
                 }
             }
         }
-        NFAState endState = tempState;
+        AutomatonState endState = tempState;
         endState.setEndState(true);
         nfa.add(endState);
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer descNFA = new StringBuffer();
+        for (AutomatonState state: nfa) {
+            descNFA.append(state.toString());
+            descNFA.append("\n");
+        }
+        return descNFA.toString();
     }
 }

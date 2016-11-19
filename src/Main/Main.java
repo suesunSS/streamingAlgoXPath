@@ -41,7 +41,7 @@ public class Main {
                     spsa.processOneLine(line);
                     break;
                 case COMPLEX_PATH:
-                    //TODO
+                    dfaAlgo.processOneLine(line);
                     break;
             }
         }
@@ -52,14 +52,12 @@ public class Main {
                 output = spsa.getReturnedOrderList();
                 break;
             case COMPLEX_PATH:
-                //TODO
+                output = dfaAlgo.getReturnedOrderList();
                 break;
         }
 
         if (output != null) {
-            for (Integer preOrder : output) {
-                System.out.println(preOrder);
-            }
+            output.forEach(System.out::println);
         }
 
     }

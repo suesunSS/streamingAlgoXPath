@@ -57,7 +57,7 @@ public class SimplePathStreamingAlgorithm {
                     queryMatchPos = 1;
                 }
             } else {
-               positionStack.push(queryMatchPos);
+                positionStack.push(queryMatchPos);
             }
             nodePreOrder++;
         } else {
