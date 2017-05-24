@@ -2,13 +2,14 @@ package Algorithm;
 
 import Exceptions.ExceptionIndex;
 import Exceptions.StreamingAlgorithmException;
-import model.StreamingFormatXMLElement;
+import Model.StreamingFormatXMLElement;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
  * Created by Shu SHANG on 14/11/16.
+ * Project streamingAlgoXPath
  */
 public class SimplePathStreamingAlgorithm {
     private String[] stepArray; //query parameters
@@ -25,6 +26,10 @@ public class SimplePathStreamingAlgorithm {
         queryMatchPos = 1;
         nodePreOrder = 0;
         lineNum = 0;
+    }
+
+    public int getLineNum() {
+        return lineNum;
     }
 
     private void parseQuery(String simplePathQuery) throws StreamingAlgorithmException {

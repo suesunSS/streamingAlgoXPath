@@ -1,10 +1,11 @@
-package model;
+package Model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Shu SHANG on 18/11/16.
+ * Created by Shu SHANG on 15/11/16.
+ * Project streamingAlgoXPath
  */
 
 public class DFAState extends AutomatonState {

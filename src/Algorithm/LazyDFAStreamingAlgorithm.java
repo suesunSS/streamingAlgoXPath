@@ -1,12 +1,13 @@
 package Algorithm;
 
-import model.*;
+import Model.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
  * Created by Shu SHANG on 15/11/16.
+ * Project streamingAlgoXPath
  */
 
 public class LazyDFAStreamingAlgorithm {
@@ -34,6 +35,10 @@ public class LazyDFAStreamingAlgorithm {
 
     public ArrayList<Integer> getReturnedOrderList() {
         return returnedOrderList;
+    }
+
+    public int getLineNum() {
+        return lineNum;
     }
 
     public void processOneLine(String line) {
@@ -69,14 +74,20 @@ public class LazyDFAStreamingAlgorithm {
 
     private void startElement(String eleName) {
         DFAState top = stateStack.peek();
-        if (top.hasTransition(eleName)) {
-            updateAndMatchInStack(top, eleName);
+        //System.out.println(top);
+        //System.out.println(eleName);
+        if (top != null) {
+            if (top.hasTransition(eleName)) {
+                updateAndMatchInStack(top, eleName);
+            }
         }
         nodePreOrder++;
     }
 
     private void endElement() {
-        stateStack.pop();
+        if (stateStack.peek() != null) {
+            stateStack.pop();
+        }
     }
 
     private void updateAndMatchInStack(DFAState state, String input) {
@@ -103,15 +114,16 @@ public class LazyDFAStreamingAlgorithm {
             boolean isEndState = false;
             boolean hasSelfStarTransition = false;
             for (AutomatonState everyNFAState : nfaStates) {
-                if (everyNFAState.isEndState() == true) {
+                if (everyNFAState.isEndState()) {
                     isEndState = true;
                 }
-                if (everyNFAState.hasSelfStarTransition() == true) {
+                if (everyNFAState.hasSelfStarTransition()) {
                     hasSelfStarTransition = true;
                 }
             }
             DFAState newDFAState = new DFAState(dfaStateNum++, isEndState, hasSelfStarTransition, nfaStates);
             stateStack.push(newDFAState);
+            lazyDFA.getLazyDFA().add(newDFAState);
             if (newDFAState.isEndState()) {
                 returnedOrderList.add(nodePreOrder);
             }

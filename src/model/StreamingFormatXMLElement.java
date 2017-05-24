@@ -1,7 +1,8 @@
-package model;
+package Model;
 
 /**
  * Created by Shu SHANG on 14/11/16.
+ * Project streamingAlgoXPath
  */
 public class StreamingFormatXMLElement {
     private int startOrEnd;

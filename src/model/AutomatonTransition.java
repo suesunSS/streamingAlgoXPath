@@ -1,7 +1,8 @@
-package model;
+package Model;
 
 /**
- * Created by Shu SHANG on 18/11/16.
+ * Created by Shu SHANG on 15/11/16.
+ * Project streamingAlgoXPath
  */
 
 public class AutomatonTransition {
@@ -19,14 +20,6 @@ public class AutomatonTransition {
 
     public String getInputSymbol() {
         return inputSymbol;
-    }
-
-    public void setToState(AutomatonState toState) {
-        this.toState = toState;
-    }
-
-    public void setInputSymbol(String inputSymbol) {
-        this.inputSymbol = inputSymbol;
     }
 
     @Override
